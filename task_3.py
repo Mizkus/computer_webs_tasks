@@ -3,9 +3,10 @@ from bs4 import BeautifulSoup as bs
 import csv
 
 
-r = requests.get("https://avtomir.ru/new-cars/")
-html = bs(r.content, 'html.parser')
 
+page_num = input("Page num: ")
+r = requests.get(f"https://avtomir.ru/new-cars/?page={page_num}")
+html = bs(r.content, 'html.parser')
 cars = html.find_all('div', class_='card')
 
 with open("auto.csv", "w", newline='') as file:
